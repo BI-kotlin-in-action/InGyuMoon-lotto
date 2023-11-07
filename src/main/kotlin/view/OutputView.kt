@@ -1,7 +1,6 @@
 package view
 
 import domain.Lotto
-import domain.Rank
 
 class OutputView {
     private val LOTTO_PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요."
@@ -23,8 +22,13 @@ class OutputView {
     }
     fun printLottoTickets(lottoTickets: MutableList<Lotto>) {
         println(LOTTO_TICKETS_MESSAGE)
-        for (i in 0 until lottoTickets.size) {
-            println(lottoTickets[i].numbers)
+        /*
+        lottoTickets.forEach { lottoTicket ->
+            println(lottoTicket.numbers)
+        }
+        */
+        for (lottoTicket in lottoTickets) {
+            println(lottoTicket.numbers)
         }
     }
     fun printWinningLottoNumber(winningNumber: List<Int>) {

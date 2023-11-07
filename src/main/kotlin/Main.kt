@@ -1,6 +1,6 @@
 import controller.LottoController
 
 fun main(args: Array<String>) {
-    var controller = LottoController()
+    val controller = LottoController()
     controller.start()
 }

@@ -8,13 +8,15 @@ import view.OutputView
 
 class LottoController {
 
-    private val LOTTO_NUMBERS_INDEX = 0
-    private val WINNING_LOTTO_TICKET_COUNT = 1
+    companion object {
+        private const val LOTTO_NUMBERS_INDEX = 0
+        private const val WINNING_LOTTO_TICKET_COUNT = 1
+    }
 
-    var output = OutputView()
-    var input = InputView()
-    var generator = LottoGenerator()
-    var result = Result()
+    private val output = OutputView()
+    private val input = InputView()
+    private val generator = LottoGenerator()
+    private val result = Result()
 
     fun start() {
         // 구입금액 입력
@@ -38,7 +40,9 @@ class LottoController {
         // 로또 당첨금 출력
         result.updateResult(winningLotto, lottoTickets)
         val reward = result.calculateReward()
+        val reward2 = result.calculateReward2()
         output.printLottoReward(reward)
+        output.printLottoReward(reward2)
     }
 
     private fun printWinningLotto(): List<Int> {
