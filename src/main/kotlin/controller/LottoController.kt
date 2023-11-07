@@ -40,9 +40,7 @@ class LottoController {
         // 로또 당첨금 출력
         result.updateResult(winningLotto, lottoTickets)
         val reward = result.calculateReward()
-        val reward2 = result.calculateReward2()
         output.printLottoReward(reward)
-        output.printLottoReward(reward2)
     }
 
     private fun printWinningLotto(): List<Int> {
