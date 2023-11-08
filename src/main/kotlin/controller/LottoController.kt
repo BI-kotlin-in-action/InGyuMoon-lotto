@@ -2,6 +2,7 @@ package controller
 
 import domain.Lotto
 import domain.LottoGenerator
+import domain.LottoTickets
 import domain.Result
 import view.InputView
 import view.OutputView
@@ -45,19 +46,19 @@ class LottoController {
     }
 
     private fun printWinningLotto(): SortedSet<Int> {
-        val winningLotto = LottoGenerator.makeLottoTickets(WINNING_LOTTO_TICKET_COUNT)[LOTTO_NUMBERS_INDEX].numbers
+        val winningLotto = LottoGenerator.makeLottoTickets(WINNING_LOTTO_TICKET_COUNT).tickets[LOTTO_NUMBERS_INDEX].numbers
         OutputView.printWinningLottoNumber(winningLotto)
         return winningLotto
     }
 
-    private fun makeManualLotto(manualLottoAmount: Int): MutableList<Lotto> {
+    private fun makeManualLotto(manualLottoAmount: Int): LottoTickets {
         val manualLottoTickets = mutableListOf<Lotto>()
         for (i in 1..manualLottoAmount) {
             OutputView.printManualLottoMakingMessage(i)
             val manualLottoTicket = InputView.getManualLottoTicket()
             manualLottoTickets.add(Lotto(manualLottoTicket))
         }
-        return manualLottoTickets
+        return LottoTickets(manualLottoTickets)
     }
 
     private fun getManualLottoPurchaseAmount(): Int {
@@ -69,10 +70,10 @@ class LottoController {
         OutputView.printLottoPurchaseAmountMessage()
         return InputView.getLottoPurchaseAmount()
     }
-    private fun mergeTicket(autoLottoTickets: MutableList<Lotto>, manualLottoTickets: MutableList<Lotto>): MutableList<Lotto> {
+    private fun mergeTicket(autoLottoTickets: LottoTickets, manualLottoTickets: LottoTickets): LottoTickets {
         val mergedList = mutableListOf<Lotto>()
-        mergedList.addAll(autoLottoTickets)
-        mergedList.addAll(manualLottoTickets)
-        return mergedList
+        mergedList.addAll(autoLottoTickets.tickets)
+        mergedList.addAll(manualLottoTickets.tickets)
+        return LottoTickets(mergedList)
     }
 }

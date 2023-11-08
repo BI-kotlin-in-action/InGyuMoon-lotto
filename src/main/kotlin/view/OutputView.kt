@@ -1,6 +1,7 @@
 package view
 
 import domain.Lotto
+import domain.LottoTickets
 import java.util.SortedSet
 
 class OutputView {
@@ -21,9 +22,9 @@ class OutputView {
         fun printManualLottoMakingMessage(num: Int) {
             println("$num$MAKING_MANUAL_LOTTO_MESSAGE")
         }
-        fun printLottoTickets(lottoTickets: MutableList<Lotto>) {
+        fun printLottoTickets(lottoTickets: LottoTickets) {
             println(LOTTO_TICKETS_MESSAGE)
-            for (lottoTicket in lottoTickets) {
+            for (lottoTicket in lottoTickets.tickets) {
                 println(lottoTicket.numbers)
             }
         }

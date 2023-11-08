@@ -10,8 +10,8 @@ class Result(
         Rank.FORTH_RANK to 0,
     ),
 ) {
-    fun updateResult(winner: SortedSet<Int>, tickets: List<Lotto>): HashMap<Rank, Int> {
-        for (ticket in tickets) {
+    fun updateResult(winner: SortedSet<Int>, tickets: LottoTickets): HashMap<Rank, Int> {
+        for (ticket in tickets.tickets) {
             val matchingNumbers = winner.intersect(ticket.numbers).size
             val rank = Rank.values().find { it.numberOfMatches == matchingNumbers }
             if (rank != null) {
