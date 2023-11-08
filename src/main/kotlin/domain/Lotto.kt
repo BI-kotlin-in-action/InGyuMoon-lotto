@@ -1,3 +1,5 @@
 package domain
 
-class Lotto(var numbers: List<Int>)
+import java.util.SortedSet
+
+class Lotto(var numbers: SortedSet<Int>)

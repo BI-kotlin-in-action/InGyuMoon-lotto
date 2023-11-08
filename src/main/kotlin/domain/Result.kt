@@ -1,30 +1,29 @@
 package domain
 
-class Result(var result: IntArray = IntArray(7)) {
-    fun updateResult(winner: List<Int>, tickets: List<Lotto>): IntArray {
-        /*
-        tickets.forEach { ticket ->
-            val matchingNumbers = winner.intersect(ticket.numbers).size
-            result[matchingNumbers]++
-        }
-        */
+import java.util.SortedSet
+
+class Result(
+    private var result: HashMap<Rank, Int> = hashMapOf<Rank, Int>(
+        Rank.FIRST_RANK to 0,
+        Rank.SECOND_RANK to 0,
+        Rank.THIRD_RANK to 0,
+        Rank.FORTH_RANK to 0,
+    ),
+) {
+    fun updateResult(winner: SortedSet<Int>, tickets: List<Lotto>): HashMap<Rank, Int> {
         for (ticket in tickets) {
             val matchingNumbers = winner.intersect(ticket.numbers).size
-            result[matchingNumbers]++
+            val rank = Rank.values().find { it.numberOfMatches == matchingNumbers }
+            if (rank != null) {
+                result[rank] = result.getOrDefault(rank, 0) + 1
+            }
         }
         return result
     }
     fun calculateReward(): Int {
         var totalPrizeAmount = 0
-        val ranks = Rank.values().reversedArray()
-        for (numberOfMatches in result.indices) {
-            if (numberOfMatches < 3) {
-                continue
-            }
-            val prize = ranks.getOrNull(numberOfMatches)
-            if (prize != null) {
-                totalPrizeAmount += (prize.prizeAmount * result[numberOfMatches])
-            }
+        for (key in result.keys) {
+            totalPrizeAmount += result[key]!! * key.prizeAmount
         }
         return totalPrizeAmount
     }
