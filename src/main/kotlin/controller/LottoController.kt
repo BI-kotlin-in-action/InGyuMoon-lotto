@@ -22,7 +22,7 @@ class LottoController {
         val lottoPurchaseAmount = getLottoPurchaseAmount()
 
         // 수동으로 구입할 로또의 개수 입력
-        val manualLottoAmount = getManualLottoPurchaseAmount()
+        val manualLottoAmount = getManualLottoPurchaseAmount(lottoPurchaseAmount)
 
         // 자동으로 로또 생성
         val autoLottoTickets = LottoGenerator.makeLottoTickets(lottoPurchaseAmount - manualLottoAmount)
@@ -55,20 +55,20 @@ class LottoController {
         val manualLottoTickets = mutableListOf<Lotto>()
         for (i in 1..manualLottoAmount) {
             OutputView.printManualLottoMakingMessage(i)
-            val manualLottoTicket = InputView.getManualLottoTicket()
+            val manualLottoTicket = InputView.getValidManualLottoTicket()
             manualLottoTickets.add(Lotto(manualLottoTicket))
         }
         return LottoTickets(manualLottoTickets)
     }
 
-    private fun getManualLottoPurchaseAmount(): Int {
+    private fun getManualLottoPurchaseAmount(lottoPurchaseAmount: Int): Int {
         OutputView.printManualLottoPurchaseMessage()
-        return InputView.getManualLottoAmount()
+        return InputView.getValidManualLottoAmount(lottoPurchaseAmount)
     }
 
     private fun getLottoPurchaseAmount(): Int {
         OutputView.printLottoPurchaseAmountMessage()
-        return InputView.getLottoPurchaseAmount()
+        return InputView.getValidLottoPurchaseAmount()
     }
     private fun mergeTicket(autoLottoTickets: LottoTickets, manualLottoTickets: LottoTickets): LottoTickets {
         val mergedList = mutableListOf<Lotto>()
