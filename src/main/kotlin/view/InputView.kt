@@ -7,17 +7,13 @@ class InputView {
         private const val COMMA_DELIMITER = ","
         private const val LOTTO_PRICE_PER_TICKET = 1000
         fun getValidLottoPurchaseAmount(): Int {
-            var hasException = true
-            var validAmount = 0
-            while (hasException) {
+            while (true) {
                 try {
-                    validAmount = getLottoPurchaseAmount()
-                    hasException = false
+                    return getLottoPurchaseAmount()
                 } catch (e: Exception) {
                     println(e.message)
                 }
             }
-            return validAmount
         }
         private fun getLottoPurchaseAmount(): Int {
             val validInput = checkIntegerFormat(readln())
@@ -32,17 +28,13 @@ class InputView {
         }
 
         fun getValidManualLottoAmount(lottoPurchaseAmount: Int): Int {
-            var hasException = true
-            var validAmount = 0
-            while (hasException) {
+            while (true) {
                 try {
-                    validAmount = getManualLottoAmount(lottoPurchaseAmount)
-                    hasException = false
+                    return getManualLottoAmount(lottoPurchaseAmount)
                 } catch (e: Exception) {
                     println(e.message)
                 }
             }
-            return validAmount
         }
         private fun getManualLottoAmount(lottoPurchaseAmount: Int): Int {
             val validInput = checkIntegerFormat(readln())
@@ -102,7 +94,7 @@ class InputView {
         }
 
         private fun checkRange(validInput: Int) {
-            if (validInput < ConstantNumber.MIN_NUMBER || validInput > ConstantNumber.MAX_NUMBER) {
+            if (validInput < LottoNumber.MIN_NUMBER || validInput > LottoNumber.MAX_NUMBER) {
                 throw IllegalArgumentException("[ERROR] 1~45 사이의 숫자를 입력학세요.")
             }
         }

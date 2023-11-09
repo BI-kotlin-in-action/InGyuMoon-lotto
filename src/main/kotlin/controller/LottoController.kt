@@ -6,7 +6,6 @@ import domain.LottoTickets
 import domain.Result
 import view.InputView
 import view.OutputView
-import java.util.SortedSet
 
 class LottoController {
 
@@ -45,7 +44,7 @@ class LottoController {
         OutputView.printLottoReward(reward)
     }
 
-    private fun printWinningLotto(): SortedSet<Int> {
+    private fun printWinningLotto(): Set<Int> {
         val winningLotto = LottoGenerator.makeLottoTickets(WINNING_LOTTO_TICKET_COUNT).tickets[LOTTO_NUMBERS_INDEX].numbers
         OutputView.printWinningLottoNumber(winningLotto)
         return winningLotto

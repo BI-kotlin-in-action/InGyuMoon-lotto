@@ -1,11 +1,11 @@
 package domain
 
-import ConstantNumber
+import LottoNumber
 
 class LottoGenerator {
     companion object {
         private const val LOTTO_NUMBER_COUNT = 6
-        private val numbers: List<Int> = (ConstantNumber.MIN_NUMBER..ConstantNumber.MAX_NUMBER).toList()
+        private val numbers: List<Int> = (LottoNumber.MIN_NUMBER..LottoNumber.MAX_NUMBER).toList()
         fun makeLottoTickets(lottoPurchaseAmount: Int): LottoTickets {
             val lottoTickets = mutableListOf<Lotto>()
             repeat(lottoPurchaseAmount) {
@@ -14,7 +14,7 @@ class LottoGenerator {
             return LottoTickets(lottoTickets)
         }
         private fun generateLottoNumbers(): Lotto {
-            return Lotto(numbers.shuffled().take(LOTTO_NUMBER_COUNT).toSortedSet())
+            return Lotto(numbers.shuffled().take(LOTTO_NUMBER_COUNT))
         }
     }
 }
