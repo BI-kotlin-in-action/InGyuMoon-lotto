@@ -6,6 +6,7 @@ class LottoGenerator {
         private const val MAX_NUMBER = 45
         private const val SUBLIST_START_INDEX = 0
         private const val SUBLIST_END_INDEX = 6
+        private val numbers: Set<Int> = (MIN_NUMBER..MAX_NUMBER).toSet()
         fun makeLottoTickets(lottoPurchaseAmount: Int): LottoTickets {
             val lottoTickets = mutableListOf<Lotto>()
             repeat(lottoPurchaseAmount) {
@@ -14,7 +15,6 @@ class LottoGenerator {
             return LottoTickets(lottoTickets)
         }
         private fun generateLottoNumbers(): Lotto {
-            val numbers: Set<Int> = (MIN_NUMBER..MAX_NUMBER).toSet()
             return Lotto(numbers.shuffled().subList(SUBLIST_START_INDEX, SUBLIST_END_INDEX).toSortedSet())
         }
     }
