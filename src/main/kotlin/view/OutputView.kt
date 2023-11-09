@@ -28,7 +28,7 @@ class OutputView {
                 println(lottoTicket.numbers)
             }
         }
-        fun printWinningLottoNumber(winningNumber: SortedSet<Int>) {
+        fun printWinningLottoNumber(winningNumber: Set<Int>) {
             println("$WINNING_LOTTO_MESSAGE$winningNumber")
         }
         fun printLottoReward(reward: Int) {

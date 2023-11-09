@@ -71,9 +71,6 @@ class LottoController {
         return InputView.getValidLottoPurchaseAmount()
     }
     private fun mergeTicket(autoLottoTickets: LottoTickets, manualLottoTickets: LottoTickets): LottoTickets {
-        val mergedList = mutableListOf<Lotto>()
-        mergedList.addAll(autoLottoTickets.tickets)
-        mergedList.addAll(manualLottoTickets.tickets)
-        return LottoTickets(mergedList)
+        return LottoTickets((autoLottoTickets.tickets + manualLottoTickets.tickets).toMutableList())
     }
 }

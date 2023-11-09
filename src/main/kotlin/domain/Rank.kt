@@ -9,13 +9,7 @@ enum class Rank(val numberOfMatches: Int, val prizeAmount: Int) {
     ;
     companion object {
         fun getRank(numberOfMatches: Int): Rank {
-            return when (numberOfMatches) {
-                FIRST_RANK.numberOfMatches -> FIRST_RANK
-                SECOND_RANK.numberOfMatches -> SECOND_RANK
-                THIRD_RANK.numberOfMatches -> THIRD_RANK
-                FORTH_RANK.numberOfMatches -> FORTH_RANK
-                else -> NONE
-            }
+            return values().find { it.numberOfMatches == numberOfMatches } ?: NONE
         }
     }
 }

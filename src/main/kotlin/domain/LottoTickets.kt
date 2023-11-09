@@ -1,3 +1,3 @@
 package domain
 
-class LottoTickets(val tickets: MutableList<Lotto>)
+class LottoTickets(val tickets: List<Lotto>)

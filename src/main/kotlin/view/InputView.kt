@@ -1,13 +1,11 @@
 package view
 
-import java.util.*
+import java.util.SortedSet
 
 class InputView {
     companion object {
         private const val COMMA_DELIMITER = ","
         private const val LOTTO_PRICE_PER_TICKET = 1000
-        private const val MIN_NUMBER = 1
-        private const val MAX_NUMBER = 45
         fun getValidLottoPurchaseAmount(): Int {
             var hasException = true
             var validAmount = 0
@@ -22,14 +20,13 @@ class InputView {
             return validAmount
         }
         private fun getLottoPurchaseAmount(): Int {
-            var validInput = 0
-            validInput = checkIntegerFormat(readln())
+            val validInput = checkIntegerFormat(readln())
             checkMinimumAmount(validInput)
             return validInput / LOTTO_PRICE_PER_TICKET
         }
 
         private fun checkMinimumAmount(validInput: Int) {
-            if (validInput < 1000) {
+            if (validInput < LOTTO_PRICE_PER_TICKET) {
                 throw IllegalArgumentException("[ERROR] 1000원 이상의 금액을 입력하세요.")
             }
         }
@@ -48,8 +45,7 @@ class InputView {
             return validAmount
         }
         private fun getManualLottoAmount(lottoPurchaseAmount: Int): Int {
-            var validInput = 0
-            validInput = checkIntegerFormat(readln())
+            val validInput = checkIntegerFormat(readln())
             checkManualLottoCount(validInput, lottoPurchaseAmount)
             return validInput
         }
@@ -93,20 +89,20 @@ class InputView {
             return manualLotto
         }
 
-        private fun checkDuplicateNumber(manualLotto: MutableList<Int>, validInput: Int) {
+        private fun checkDuplicateNumber(manualLotto: List<Int>, validInput: Int) {
             if (manualLotto.contains(validInput)) {
                 throw IllegalArgumentException("[ERROR] 중복된 숫자를 입력하셨습니다.")
             }
         }
 
-        private fun checkSize(manualLotto: MutableList<Int>) {
+        private fun checkSize(manualLotto: List<Int>) {
             if (manualLotto.size != 6) {
                 throw IllegalArgumentException("[ERROR] 6개를 입력하세요.")
             }
         }
 
         private fun checkRange(validInput: Int) {
-            if (validInput < MIN_NUMBER || validInput > MAX_NUMBER) {
+            if (validInput < ConstantNumber.MIN_NUMBER || validInput > ConstantNumber.MAX_NUMBER) {
                 throw IllegalArgumentException("[ERROR] 1~45 사이의 숫자를 입력학세요.")
             }
         }

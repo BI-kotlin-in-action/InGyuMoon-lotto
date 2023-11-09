@@ -3,7 +3,7 @@ package domain
 import java.util.SortedSet
 
 class Result {
-    private var result: HashMap<Rank, Int> = hashMapOf<Rank, Int>()
+    private val result: HashMap<Rank, Int> = hashMapOf<Rank, Int>()
     fun updateResult(winner: SortedSet<Int>, tickets: LottoTickets): HashMap<Rank, Int> {
         for (ticket in tickets.tickets) {
             val matchingNumbers = winner.intersect(ticket.numbers).size
