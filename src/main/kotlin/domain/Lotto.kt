@@ -1,7 +1,5 @@
 package domain
 
-class Lotto(var numbers: Set<Int> = emptySet()) {
-    constructor(inputNumbers: List<Int>) : this() {
-        numbers = inputNumbers.toSortedSet()
-    }
+class Lotto(var numbers: Set<Int>) {
+    constructor(inputNumbers: List<Int>) : this(inputNumbers.toSortedSet())
 }
